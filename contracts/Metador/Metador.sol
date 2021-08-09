@@ -89,6 +89,7 @@ contract Metador is ERC721PresetMinterPauserAutoId, Ownable, VRFConsumerBase {
     }
 
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
         if (metadataIndexOffset == 0) {
             return string(abi.encodePacked(_baseURI(), "placeholder"));
         }
@@ -96,12 +97,8 @@ contract Metador is ERC721PresetMinterPauserAutoId, Ownable, VRFConsumerBase {
         if (rawIndex > MAX_TOKENS) {
             rawIndex = rawIndex - MAX_TOKENS;
         }
-        return _tokenURI(rawIndex);
-    }
-
-    function _tokenURI(uint256 tokenId) internal view returns (string memory) {
         string memory baseURI = _baseURI();
-        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, Strings.toString(tokenId))) : "";
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, Strings.toString(rawIndex))) : "";
     }
 
     function revealMetadata() public {
