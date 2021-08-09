@@ -1,0 +1,85 @@
+{
+  "name": "@0xessential/fair-drop",
+  "version": "0.0.1",
+  "description": "Reference implementation of a fair NFT drop approach using an L2 registration system and a raffle for chance to buy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xessential/fair-drop.git"
+  },
+  "author": "sbauch",
+  "license": "MIT",
+  "keywords": [
+    "ethereum",
+    "smart-contracts",
+    "NFT"
+  ],
+  "files": [
+    "/contracts/**/*.sol",
+    "/build/contracts/*.json",
+    "!/contracts/test/**/*"
+  ],
+  "devDependencies": {
+    "@chainlink/contracts": "^0.2.1",
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "^2.1.4",
+    "@openzeppelin/contracts": "^4.1.0",
+    "@typechain/ethers-v5": "^6.0.0",
+    "@typechain/hardhat": "^1.0.1",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^8.0.2",
+    "@types/node": "^14.10.2",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "chai": "^4.2.0",
+    "chai-ethers": "^0.0.1",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "hardhat": "^2.1.2",
+    "hardhat-deploy": "^0.8.11",
+    "hardhat-deploy-ethers": "^0.3.0-beta.10",
+    "hardhat-gas-reporter": "^1.0.4",
+    "mocha": "^8.1.1",
+    "nft.storage": "^3.0.1",
+    "prettier": "^2.0.5",
+    "prettier-plugin-solidity": "^1.0.0-alpha.57",
+    "sinon": "^10.0.0",
+    "solhint": "^3.3.1",
+    "solhint-plugin-prettier": "^0.0.5",
+    "solidity-coverage": "^0.7.15",
+    "ts-generator": "^0.1.1",
+    "ts-node": "^9.0.0",
+    "typechain": "^4.0.2",
+    "typescript": "^4.0.5"
+  },
+  "scripts": {
+    "prepare": "node ./.setup.js && hardhat typechain",
+    "lint": "eslint \"**/*.{js,ts}\" && solhint src/**/*.sol",
+    "lint:fix": "eslint --fix \"**/*.{js,ts}\" && solhint --fix src/**/*.sol",
+    "format": "prettier --check \"**/*.{ts,js,sol}\"",
+    "format:fix": "prettier --write \"**/*.{ts,js,sol}\"",
+    "compile": "hardhat compile",
+    "void:deploy": "hardhat deploy",
+    "test": "cross-env HARDHAT_DEPLOY_FIXTURE=true HARDHAT_COMPILE=true mocha --bail --recursive test",
+    "gas": "cross-env REPORT_GAS=true hardhat test",
+    "coverage": "cross-env HARDHAT_DEPLOY_FIXTURE=true hardhat coverage",
+    "dev": "hardhat node --watch --export contractsInfo.json",
+    "local:dev": "hardhat --network localhost deploy --watch",
+    "exec": "node ./scripts.js run",
+    "deploy": "node ./scripts.js deploy",
+    "deploy-assets": "ts-node arweave/deployAssets.ts",
+    "export": "node ./scripts.js export",
+    "fork:exec": "node ./scripts.js fork:run",
+    "fork:deploy": "node ./scripts.js fork:deploy",
+    "fork:dev": "node ./scripts.js fork:dev",
+    "fork:test": "node ./scripts.js fork:test"
+  },
+  "homepage": "https://github.com/0xEssential/fair-drop#readme",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "ethers": "^5.4.4"
+  }
+}
